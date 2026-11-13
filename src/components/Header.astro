@@ -1,0 +1,200 @@
+---
+import { site, nav } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props { dark?: boolean }
+const { dark = false } = Astro.props;
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+<header class:list={['site-header', { dark }]}>
+  {/* Top banner temporarily disabled.
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <p class="tag-line">Certified lifting components, proof tested before despatch</p>
+      <ul class="topbar-links">
+        <li><a href={site.phoneHref}><Icon name="phone" /> {site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`}><Icon name="mail" /> {site.email}</a></li>
+        <li><a href="/downloads"><Icon name="download" /> Catalogue</a></li>
+      </ul>
+    </div>
+  </div>
+  */}
+
+  <div class="mainbar">
+    <div class="wrap mainbar-inner">
+      <a href="/" class="logo" aria-label={`${site.name} home`}>
+        <img src="/brand/kinston-logo.png" alt="Kinston — Lifting · Trust · Performance" width="1380" height="334" />
+      </a>
+
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          {nav.map((item) => (
+            <li class:list={[{ 'has-mega': item.mega }]}>
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label}
+                {item.mega && <Icon name="chevron" />}
+              </a>
+              {item.mega && (
+                <div class="mega" aria-label="Product categories">
+                  <div class="wrap mega-inner">
+                    <div class="mega-intro"><span>PRODUCT RANGE</span><p>Built for the lift.</p></div>
+                    <ul class="mega-grid">
+                      <li><a href="/products">
+                        <span class="mega-image"><img src="/images/products/branded/grade-100/turquoise/alloy-clevis-self-locking-hook-g100.webp" alt="" width="160" height="160" /></span>
+                        <span class="mega-copy"><span class="mega-grade">G100</span><span class="mega-name">Grade 100 Rigging</span><span class="mega-description">Hooks, links &amp; lifting components</span></span>
+                        <span class="mega-arrow"><Icon name="arrow" /></span>
+                      </a></li>
+                      <li><a href="/products/grade-80-rigging">
+                        <span class="mega-image"><img src="/images/products/branded/grade-80/alloy-steel-clevis-sling-hook-2-18-g80.webp" alt="" width="160" height="160" /></span>
+                        <span class="mega-copy"><span class="mega-grade">G80</span><span class="mega-name">Grade 80 Rigging</span><span class="mega-description">A complete range in RAL 2004 orange</span></span>
+                        <span class="mega-arrow"><Icon name="arrow" /></span>
+                      </a></li>
+                      <li><a href="/products/grade-6-shackles">
+                        <span class="mega-image"><img src="/images/products/branded/bow-shackle-screw-pin.webp" alt="" width="160" height="160" /></span>
+                        <span class="mega-copy"><span class="mega-grade">G6</span><span class="mega-name">Grade 6 Shackles</span><span class="mega-description">Galvanised bow &amp; dee shackles</span></span>
+                        <span class="mega-arrow"><Icon name="arrow" /></span>
+                      </a></li>
+                    </ul>
+                    {/* Catalogue link temporarily disabled alongside the Downloads page.
+                    <a class="mega-catalogue" href="/downloads"><span><Icon name="download" /> Explore our catalogues</span><Icon name="arrow" /></a>
+                    */}
+                  </div>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <a href="/contact" class="btn btn-sm quote">Request a quote</a>
+
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
+        <span class="visually-hidden">Toggle menu</span>
+        <Icon name="menu" class="ico-menu" />
+        <Icon name="close" class="ico-close" />
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <nav aria-label="Mobile">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+            {item.mega && (
+              <ul class="mobile-sub">
+                <li><a href="/products">Grade 100 Rigging</a></li>
+                <li><a href="/products/grade-80-rigging">Grade 80 Rigging</a></li>
+                <li><a href="/products/grade-6-shackles">Grade 6 Shackles</a></li>
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div class="mobile-cta">
+        <a href="/contact" class="btn">Request a quote</a>
+        {/* <a href={site.phoneHref} class="mobile-phone"><Icon name="phone" /> {site.phone}</a> */}
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const panel = document.getElementById('mobile-nav');
+  if (btn && panel) {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.hidden = open;
+      document.body.classList.toggle('nav-open', !open);
+    });
+  }
+</script>
+
+<style>
+  .site-header { position: sticky; top: 0; z-index: 50; background: var(--white); box-shadow: 0 1px 0 var(--zinc); }
+  .topbar { background: var(--ink); color: #c9d1e0; font-size: var(--t-xs); }
+  .topbar-inner { display: flex; justify-content: space-between; align-items: center; min-height: 36px; gap: 24px; }
+  .tag-line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar-links { display: flex; gap: 22px; }
+  .topbar-links a { display: inline-flex; align-items: center; gap: 6px; color: #c9d1e0; transition: color .15s; }
+  .topbar-links a:hover { color: var(--white); }
+  .topbar-links :global(svg) { width: 14px; height: 14px; color: var(--orange); }
+
+  .mainbar-inner { display: flex; align-items: center; gap: 32px; min-height: var(--header-h); }
+  .logo img { height: 40px; width: auto; }
+  .primary { margin-left: auto; }
+  .primary > ul { display: flex; gap: 4px; }
+  .primary > ul > li { position: relative; }
+  .primary > ul > li > a {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 24px 14px; font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+    color: var(--ink); position: relative;
+  }
+  .primary > ul > li > a::after {
+    content: ''; position: absolute; left: 14px; right: 14px; bottom: 16px; height: 3px;
+    background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform .2s var(--ease);
+  }
+  .primary > ul > li > a:hover::after, .primary > ul > li > a[aria-current='page']::after { transform: scaleX(1); }
+  .primary :global(svg) { width: 14px; height: 14px; }
+
+  .has-mega:hover .mega, .has-mega:focus-within .mega { opacity: 1; visibility: visible; transform: translateY(0); }
+  .mega {
+    position: absolute; left: 0; top: 100%; width: 440px;
+    background: var(--white); border: 1px solid var(--zinc); border-top: 3px solid var(--orange); border-radius: 0 0 14px 14px; box-shadow: 0 24px 55px -18px rgba(17,27,51,.3); overflow: hidden;
+    opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .18s var(--ease), transform .18s var(--ease), visibility 0s linear .18s;
+  }
+  .has-mega:hover .mega, .has-mega:focus-within .mega { transition-delay: 0s; }
+  .mega-inner { width: 100%; max-width: none; margin: 0; padding: 0; }
+  .mega-intro { padding: 22px 24px 14px; }
+  .mega-intro > span { font-size: 10px; font-weight: 600; letter-spacing: .15em; color: var(--steel); }
+  .mega-intro p { font-family: var(--font-display); font-size: 25px; font-weight: 600; color: var(--navy); margin-top: 4px; }
+  .mega-grid { display: grid; grid-template-columns: 1fr; gap: 6px; padding: 0 12px 14px; }
+  .mega-grid a { display: flex; align-items: center; gap: 16px; padding: 12px; border-radius: 9px; border: 1px solid transparent; transition: background .18s, border-color .18s; }
+  .mega-image { width: 80px; height: 86px; border-radius: 7px; overflow: hidden; flex: none; background: #eceef0; }
+  .mega-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .2s; }
+  .mega-copy { display: grid; gap: 5px; }
+  .mega-grade { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--orange); }
+  .mega-name { font-family: var(--font-display); font-weight: 600; font-size: 20px; line-height: 1.2; color: var(--navy); }
+  .mega-description { font-size: 11px; line-height: 1.5; color: var(--steel); }
+  .mega-arrow { margin-left: auto; color: var(--steel); transition: transform .18s, color .18s; }
+  .mega-grid a:hover, .mega-grid a:focus-visible { background: #f6f7f9; border-color: var(--zinc); }
+  .mega-grid a:hover .mega-arrow { color: var(--orange); transform: translateX(3px); }
+  .mega-grid a:hover .mega-image img { transform: scale(1.04); }
+  .mega-grid a:focus-visible, .mega-catalogue:focus-visible { outline: 2px solid var(--orange); outline-offset: -2px; }
+  .mega-catalogue { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 24px; background: var(--navy); color: white; font-size: 12px; font-weight: 500; }
+  .mega-catalogue > span { display: inline-flex; gap: 10px; align-items: center; }
+  .mega-catalogue:hover { background: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { .mega, .mega-grid a, .mega-image img, .mega-arrow { transition: none; } }
+
+  .quote { flex: none; }
+  .menu-btn { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; margin-left: auto; }
+  .menu-btn :global(svg) { width: 26px; height: 26px; }
+  .menu-btn :global(.ico-close), .menu-btn[aria-expanded='true'] :global(.ico-menu) { display: none; }
+  .menu-btn[aria-expanded='true'] :global(.ico-close) { display: block; }
+
+  .mobile-nav { display: none; background: var(--white); border-top: 1px solid var(--zinc); max-height: calc(100vh - var(--header-h)); overflow: auto; }
+  .mobile-nav > nav { padding: 8px var(--gutter) 20px; }
+  .mobile-nav > nav > ul > li > a { display: block; padding: 10px 0; min-height: 44px; font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; border-bottom: 1px solid var(--zinc); }
+  .mobile-sub { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; padding: 4px 0 6px; }
+  .mobile-sub a { display: block; padding: 8px 0; font-size: .875rem; color: var(--steel); }
+  .mobile-cta { display: grid; gap: 10px; margin-top: 14px; }
+  .mobile-cta .btn { width: 100%; min-height: 44px; font-size: 1rem; }
+  .mobile-phone { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: .875rem; font-weight: 500; }
+  .mobile-phone :global(svg) { width: 16px; height: 16px; color: var(--orange); }
+
+  @media (max-width: 1100px) {
+    .topbar-links li:nth-child(2) { display: none; }
+    .primary, .quote { display: none; }
+    .menu-btn { display: inline-flex; }
+    .mobile-nav:not([hidden]) { display: block; }
+    .logo img { height: 34px; }
+  }
+  @media (max-width: 640px) {
+    .tag-line { display: none; }
+    .topbar-inner { justify-content: flex-end; }
+  }
+</style>
