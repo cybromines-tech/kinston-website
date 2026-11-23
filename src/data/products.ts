@@ -142,7 +142,7 @@ const shackleCols = [
 
 // ---------- products ----------
 
-export const products: Product[] = [
+const catalogProducts: Product[] = [
   ...grade100Products,
   ...grade80Products,
   // Previous product listings remain disabled; uncomment individual entries to restore.
@@ -1449,7 +1449,20 @@ export const products: Product[] = [
 //   },
 ];
 
-// products.push(...additionalProducts);
+// catalogProducts.push(...additionalProducts);
+
+export const products = catalogProducts.map((product) => {
+  const grade = /^(?:Grade\s+|G)(\d+)$/i.exec(product.grade ?? '');
+  if (!grade) return product;
+
+  const gradeNumber = grade[1];
+  const gradeLabel = `(?:Grade\\s+|G)${gradeNumber}`;
+  const name = product.name
+    .replace(new RegExp(`^${gradeLabel}\\s+`, 'i'), '')
+    .replace(new RegExp(`(?:,\\s*|\\s+)${gradeLabel}$`, 'i'), '');
+
+  return { ...product, name: `Grade ${gradeNumber} ${name}` };
+});
 
 // ---------- helpers ----------
 

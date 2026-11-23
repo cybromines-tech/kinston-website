@@ -1,14 +1,12 @@
 ---
 import ProductCard from './ProductCard.astro';
 import ProductRail from './ProductRail.astro';
-import { grade100Products } from '../data/grade-100-products';
-import { grade80Products } from '../data/grade-80-products';
-import { grade6Products } from '../data/products';
+import { products, grade6Products } from '../data/products';
 interface Props { activeGrade: 'Grade 100' | 'Grade 80' | 'Grade 6' }
 const { activeGrade } = Astro.props;
 const ranges = [
-  { grade: 'Grade 100', id: 'grade-100', products: grade100Products, description: 'Our Grade 100 rigging range includes alloy steel hooks, connecting links and master links for compatible Grade 100 chain assemblies. Forged or welded components support demanding applications in oilfields, mining and ports. Explore each product for dimensions, working load limits and available configurations.' },
-  { grade: 'Grade 80', id: 'grade-80', products: grade80Products, description: 'Our Grade 80 rigging range includes alloy steel hooks, connecting links, D rings, swivels, master links and accessories in RAL 2004 orange. Explore each product for reference models, dimensions, working load limits and spare parts.' },
+  { grade: 'Grade 100', id: 'grade-100', products: products.filter((product) => product.grade === 'Grade 100'), description: 'Our Grade 100 rigging range includes alloy steel hooks, connecting links and master links for compatible Grade 100 chain assemblies. Forged or welded components support demanding applications in oilfields, mining and ports. Explore each product for dimensions, working load limits and available configurations.' },
+  { grade: 'Grade 80', id: 'grade-80', products: products.filter((product) => product.grade === 'Grade 80'), description: 'Our Grade 80 rigging range includes alloy steel hooks, connecting links, D rings, swivels, master links and accessories in RAL 2004 orange. Explore each product for reference models, dimensions, working load limits and spare parts.' },
   { grade: 'Grade 6', id: 'grade-6', title: 'Grade 6 Shackles', products: grade6Products, description: 'Our Grade 6 shackle range includes high strength bow and dee shackles with a screw pin or a bolt, nut and cotter pin, hot dip galvanised. Explore each product for item numbers, dimensions and working load limits.' },
 ];
 ---
