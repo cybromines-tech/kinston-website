@@ -17,9 +17,9 @@ export const site = {
 };
 
 export const nav = [
+  { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Products', href: '/products', mega: true },
-  { label: 'Industries', href: '/industries' },
   // Temporarily disabled; page sources are preserved in src/disabled-pages.
   // { label: 'Quality', href: '/quality' },
   // { label: 'Downloads', href: '/downloads' },
@@ -76,17 +76,6 @@ export const certifications = [
   { code: 'EN 1677', title: 'Components for slings', body: 'Grade 80 and Grade 100 forged components manufactured and tested to EN 1677 parts 1 to 6.' },
   { code: 'ASME B30.10', title: 'Hooks', body: 'Hoist, sling and self-locking hooks dimensioned and marked in line with ASME B30.10 requirements.' },
   { code: 'DNV Type Approval', title: 'Offshore components', body: 'Selected shackles, master links and self-locking hooks hold DNV type approval for offshore container use.' },
-];
-
-export const sectors = [
-  { slug: 'construction', name: 'Construction', body: 'Tower crane rigging, precast handling and formwork lifting with chain slings and self-locking hooks sized for repeat use on site.' },
-  { slug: 'oil-and-gas', name: 'Oil and gas', body: 'DNV-approved shackles, master links and slings for offshore container handling and rig supply vessels.' },
-  { slug: 'marine-and-ports', name: 'Marine and ports', body: 'Wire rope sockets, thimbles and grommet hardware for mooring, towing and quayside container operations.' },
-  { slug: 'manufacturing', name: 'Manufacturing', body: 'Chain blocks, lever hoists and lifting points for press shops, foundries and assembly lines.' },
-  { slug: 'power-and-utilities', name: 'Power and utilities', body: 'Transformer, turbine and overhead line lifting with certified Grade 100 assemblies and swivel lifting points.' },
-  { slug: 'mining', name: 'Mining', body: 'Abrasion-resistant chain slings and heavy-duty hooks for dragline, shovel and haul truck maintenance.' },
-  { slug: 'logistics', name: 'Logistics and transport', body: 'Ratchet lashings, load binders and webbing slings for securing and handling freight.' },
-  { slug: 'renewables', name: 'Renewables', body: 'Blade root, nacelle and tower section lifting hardware for wind and solar installation contractors.' },
 ];
 
 export const stats = [

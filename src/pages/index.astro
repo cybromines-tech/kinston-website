@@ -3,11 +3,10 @@ import Base from '../layouts/Base.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
-import { site, sectors } from '../data/site';
+import { site } from '../data/site';
 import { allCategoriesWithCounts } from '../data/products';
 
 const cats = allCategoriesWithCounts();
-const sectorIcons = ['construction', 'offshore', 'marine', 'factory', 'power', 'mining', 'truck', 'wind'];
 ---
 <Base
   title="Kinston Lifting | Certified lifting chain, hooks, shackles and hoists"
@@ -21,19 +20,12 @@ const sectorIcons = ['construction', 'offshore', 'marine', 'factory', 'power', '
     <div class="hero-video-shade" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <div class="hero-copy">
-        <p class="eyebrow"><span></span> Kinston Lifting · Since {site.founded}</p>
+        <p class="eyebrow"><span></span> Kinston</p>
         <h1>Behind every lift.<br /><em class="hot">Confidence.</em></h1>
         <p class="hero-intro">We make and supply certified lifting equipment for the work that matters.</p>
-        <p class="lede">Grade 100 and Grade 80 chain slings, hooks, shackles, master links, wire rope fittings and hoists. Every item is proof tested, marked and traceable to its heat number before it leaves us.</p>
         <div class="hero-actions">
           <a class="btn" href="/products">Explore our products <Icon name="arrow" /></a>
-          <a class="btn btn-outline-light" href="/contact">Talk to an engineer</a>
         </div>
-        <ul class="proof">
-          <li><Icon name="shield" /> EN 1677 and ASME B30 compliant</li>
-          <li><Icon name="gauge" /> Proof loaded to 2.5 × WLL</li>
-          <li><Icon name="tag" /> Serial numbered with certificate</li>
-        </ul>
       </div>
       <a class="hero-scroll" href="#discover">Discover Kinston <Icon name="arrow" /></a>
     </div>
@@ -84,32 +76,6 @@ const sectorIcons = ['construction', 'offshore', 'marine', 'factory', 'power', '
     </div>
   </section>
   */}
-
-  <section class="industry-section section" aria-labelledby="industry-title">
-    <div class="wrap">
-      <div class="industry-heading">
-        <div><p class="industry-kicker"><span></span> INDUSTRIES WE SERVE</p><h2 id="industry-title">Different industries.<br />The same <em>confidence.</em></h2></div>
-        <div class="industry-heading-copy"><p>From tower crane rigging to subsea release, our ranges are specified where downtime is expensive and inspection is strict.</p><a href="/industries" class="industry-link">Explore our industries <Icon name="arrow" /></a></div>
-      </div>
-      <div class="industry-layout">
-        <a class="industry-feature" href="/industries" aria-label="Explore the industries Kinston serves">
-          <img src="/images/industries/industrial-yard.webp" alt="Gantry cranes and steel structures in a maritime fabrication yard at dusk" width="800" height="1200" loading="lazy" decoding="async" />
-          <span class="industry-feature-top"><span>KINSTON IN INDUSTRY</span><span class="industry-feature-arrow"><Icon name="arrow" /></span></span>
-          <div class="industry-feature-copy"><span class="industry-feature-label">BUILT FOR THE REAL WORLD</span><h3>Where the work<br />never stands still.</h3><p>From the crane hook to the load.<br />A lifting partner you can count on.</p></div>
-        </a>
-        <ul class="sectors" data-reveal>
-          {sectors.map((s, i) => (
-            <li><a href={`/industries#${s.slug}`}>
-              <div class="sector-top"><span class="sector-icon"><Icon name={sectorIcons[i]} /></span><span class="sector-number">0{i + 1}</span></div>
-              <h3>{s.name}<span class="sector-arrow"><Icon name="arrow" /></span></h3>
-              <p>{s.body}</p>
-            </a></li>
-          ))}
-        </ul>
-      </div>
-      <div class="industry-foot"><span><Icon name="globe" /> Across industries. Around the world.</span><a href="/contact">Find the right equipment for your operation <Icon name="arrow" /></a></div>
-    </div>
-  </section>
 
   <section class="lift-help section">
     <div class="wrap help-inner">
@@ -281,9 +247,6 @@ const sectorIcons = ['construction', 'offshore', 'marine', 'factory', 'power', '
   .hero h1 { color: var(--white); margin: 18px 0 22px; max-width: 15ch; font-size: clamp(2.75rem, 6vw, 5rem); text-wrap: balance; }
   .hero .lede { color: #c3cbdb; max-width: 54ch; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
-  .proof { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 40px; font-size: var(--t-sm); color: #c3cbdb; }
-  .proof li { display: inline-flex; align-items: center; gap: 8px; }
-  .proof :global(svg) { width: 18px; height: 18px; color: var(--orange); }
   .hero-art-wrap { position: relative; max-width: 600px; justify-self: end; width: 100%; }
   .hero-fig { position: relative; margin: 0; }
   .hero-fig img { width: 100%; height: auto; filter: drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
@@ -382,7 +345,6 @@ const sectorIcons = ['construction', 'offshore', 'marine', 'factory', 'power', '
   .hero-intro { font-size: 1.35rem; max-width: 34ch; line-height: 1.45; color: white; margin-bottom: 16px; }
   .hero .lede { font-size: 1rem; line-height: 1.7; max-width: 50ch; color: #aab8cc; }
   .hero-actions { margin-top: 28px; }
-  .proof { gap: 10px; display: grid; margin-top: 27px; font-size: .8rem; }
   .hero-art-wrap { isolation: isolate; padding-top: 15px; }
   .art-word { position: absolute; top: -20px; left: -5px; font-family: var(--font-display); font-weight: 700; font-size: clamp(8rem, 18vw, 17rem); line-height: 1; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1px #ffffff16; z-index: -1; }
   .art-grade { position: absolute; right: 0; top: 70px; display: grid; text-align: right; gap: 4px; }
@@ -470,75 +432,6 @@ const sectorIcons = ['construction', 'offshore', 'marine', 'factory', 'power', '
   .range-go { border: none; background: #f0f2f5; }
   @media (hover: none) { .range-browse { display: none; } }
 
-  .industry-section { background: #f5f4f0; border-block: 1px solid #e8e6df; }
-  .industry-heading { display: grid; grid-template-columns: 1.2fr 1fr; align-items: end; gap: 64px; margin-bottom: 44px; }
-  .industry-kicker { display: flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: .18em; font-weight: 600; color: #746d62; margin-bottom: 22px; }
-  .industry-kicker > span { width: 20px; height: 2px; background: var(--orange); }
-  .industry-heading h2 { font-size: clamp(2.3rem, 4vw, 3.8rem); line-height: 1.02; letter-spacing: -.035em; }
-  .industry-heading h2 em { color: #ce4a18; font-style: normal; }
-  .industry-heading-copy > p { color: var(--steel); font-size: 1rem; line-height: 1.75; max-width: 46ch; }
-  .industry-link { display: inline-flex; align-items: center; gap: 22px; font-size: .9rem; font-weight: 600; margin-top: 21px; border-bottom: 1px solid #cac5bb; padding-bottom: 7px; }
-  .industry-link :global(svg) { width: 17px; transition: transform .2s; }
-  .industry-link:hover { color: #ce4a18; }
-  .industry-link:hover :global(svg) { transform: translateX(3px); }
-  .industry-layout { display: grid; grid-template-columns: .85fr 1.7fr; gap: 24px; align-items: stretch; }
-  .industry-feature { display: block; position: relative; isolation: isolate; overflow: hidden; border-radius: 12px; background: #101d2c; min-height: 650px; color: white; }
-  .industry-feature > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
-  .industry-feature:hover > img { transform: scale(1.04); }
-  .industry-feature::after { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, #06101d66 0%, #06101d00 38%, #06101dcc 72%, #06101df5 100%); }
-  .industry-feature-top { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 25px; font-size: 9px; letter-spacing: .16em; }
-  .industry-feature-arrow { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #ffffff60; border-radius: 50%; }
-  .industry-feature-arrow :global(svg) { width: 15px; transform: rotate(-45deg); }
-  .industry-feature-copy { position: absolute; z-index: 1; bottom: 32px; left: 28px; right: 28px; }
-  .industry-feature-label { display: block; color: #ffb087; font-size: 9px; letter-spacing: .15em; margin-bottom: 18px; }
-  .industry-feature h3 { color: white; font-size: clamp(1.8rem, 2.7vw, 2.4rem); letter-spacing: -.02em; line-height: 1.04; margin-bottom: 18px; }
-  .industry-feature-copy p { font-size: .87rem; color: #c5ccd4; line-height: 1.7; }
-  .sectors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-  .sectors li { min-width: 0; }
-  .sectors a { display: flex; flex-direction: column; height: 100%; padding: 23px 24px; background: #ffffffbd; border: 1px solid #e2e0d9; border-radius: 10px; transition: background .25s, border-color .25s, box-shadow .25s, transform .25s var(--ease); }
-  .sectors a:hover, .sectors a:focus-visible { background: white; border-color: #dfb49b; box-shadow: 0 12px 24px -16px #35200e35; transform: translateY(-3px); }
-  .sector-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 17px; }
-  .sector-icon { color: #a8643d; }
-  .sector-icon :global(svg) { width: 26px; height: 26px; stroke-width: 1.4; }
-  .sector-number { font-size: 10px; letter-spacing: .1em; color: #98958d; }
-  .sectors h3 { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 1.25rem; line-height: 1.1; color: #192338; margin: 0 0 10px; }
-  .sector-arrow { color: #a8aaa9; flex: none; transition: color .25s, transform .25s; }
-  .sector-arrow :global(svg) { width: 17px; height: 17px; transform: rotate(-45deg); }
-  .sectors a:hover .sector-arrow { color: #d55121; transform: translate(2px, -2px); }
-  .sectors p { font-size: .84rem; line-height: 1.65; color: #657080; }
-  .industry-foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid #dad7ce; padding-top: 23px; margin-top: 28px; font-size: .8rem; color: #767468; }
-  .industry-foot > span, .industry-foot > a { display: inline-flex; align-items: center; gap: 10px; }
-  .industry-foot :global(svg) { width: 17px; height: 17px; flex: none; }
-  .industry-foot > a { color: #293548; }
-  .industry-foot > a:hover { color: #ce4a18; }
-  @media (max-width: 1100px) {
-    .industry-layout { grid-template-columns: 1fr 2fr; gap: 18px; }
-    .industry-feature-copy { left: 22px; right: 22px; }
-    .sectors a { padding: 20px; }
-  }
-  @media (max-width: 900px) {
-    .industry-heading { gap: 30px; }
-    .industry-layout { grid-template-columns: 1fr; }
-    .industry-feature { min-height: 340px; }
-    .industry-feature > img { object-position: 50% 40%; }
-    .industry-feature::after { background: linear-gradient(90deg, #06101de6, #06101d11); }
-    .industry-feature-copy { left: 28px; max-width: 350px; }
-    .industry-feature-top { justify-content: space-between; }
-    .industry-feature-arrow { margin-left: auto; }
-  }
-  @media (max-width: 600px) {
-    .industry-heading { grid-template-columns: 1fr; gap: 23px; margin-bottom: 28px; }
-    .industry-heading h2 { font-size: clamp(2.2rem, 9vw, 2.875rem); }
-    .industry-heading-copy > p { font-size: .93rem; }
-    .industry-feature { min-height: 340px; }
-    .industry-feature-copy { left: 24px; bottom: 25px; }
-    .sectors { grid-template-columns: 1fr; gap: 12px; }
-    .sectors a { padding: 23px; }
-    .sector-top { margin-bottom: 14px; }
-    .sectors p { font-size: .9rem; }
-    .industry-foot { align-items: start; flex-direction: column; gap: 14px; line-height: 1.6; }
-  }
-  @media (prefers-reduced-motion: reduce) { .industry-feature > img, .sectors a, .sector-arrow, .industry-link :global(svg) { transition: none; } .industry-feature:hover > img, .sectors a:hover { transform: none; } }
   /* Full-width video hero; keep the copy readable over moving footage. */
   .video-hero { background: #101b28; isolation: isolate; }
   .video-hero::before { display: none; }
@@ -563,7 +456,6 @@ const sectorIcons = ['construction', 'offshore', 'marine', 'factory', 'power', '
     .video-hero h1 { font-size: clamp(2.4rem, 10vw, 3.5rem); margin-block: 16px; }
     .video-hero .hero-actions { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
     .video-hero .hero-actions .btn { width: 100%; justify-content: center; }
-    .video-hero .proof { gap: 12px; margin-top: 24px; }
   }
 
 </style>
