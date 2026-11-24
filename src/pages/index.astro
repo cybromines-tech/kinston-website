@@ -29,13 +29,6 @@ const cats = allCategoriesWithCounts();
       </div>
       <a class="hero-scroll" href="#discover">Discover Kinston <Icon name="arrow" /></a>
     </div>
-    <div class="wrap hero-ranges">
-      <ul>
-        {cats.map((c) => (
-          <li><a href={`/products/${c.slug}`}>{c.short} <span>{c.count}</span></a></li>
-        ))}
-      </ul>
-    </div>
   </section>
 
   <section class="company-intro section" id="discover" aria-labelledby="intro-title">
@@ -77,7 +70,7 @@ const cats = allCategoriesWithCounts();
   </section>
   */}
 
-  <section class="lift-help section">
+  <section class="lift-help section" hidden>
     <div class="wrap help-inner">
       <div><p class="eyebrow">LET’S GET YOUR PROJECT MOVING</p><h2>Have a lift in mind?<br />Let’s find the right solution.</h2><p>Tell us what you’re lifting, where you’re working and when you need it. Our engineers will help with the equipment, specifications and quotation.</p></div>
       <div class="help-actions"><a class="btn" href="/contact">Discuss your requirements <Icon name="arrow" /></a>{/* <a href={`mailto:${site.email}`}>{site.email}</a> */}</div>
@@ -232,13 +225,6 @@ const cats = allCategoriesWithCounts();
   .bench-stamp :global(svg) { width: 14px; height: 14px; stroke-width: 3; }
 
   /* range strip */
-  .hero-ranges { position: relative; border-top: 1px solid rgba(255,255,255,.12); margin-top: 8px; }
-  .hero-ranges ul { display: flex; gap: 4px 28px; padding: 18px 0 22px; overflow-x: auto; scrollbar-width: none; }
-  .hero-ranges ul::-webkit-scrollbar { display: none; }
-  .hero-ranges li { flex: none; }
-  .hero-ranges a { font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem; color: #dfe4ee; white-space: nowrap; transition: color .15s; }
-  .hero-ranges a span { font-family: var(--font-body); font-weight: 500; font-size: var(--t-xs); color: var(--steel-light); margin-left: 3px; }
-  .hero-ranges a:hover { color: var(--orange); }
   .hero-fig { animation: float 8s ease-in-out 1.2s infinite; }
   @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(-1deg); } }
   @keyframes pulse { 0%, 100% { opacity: .75; transform: scale(.96); } 50% { opacity: 1; transform: scale(1.04); } }
@@ -357,8 +343,6 @@ const cats = allCategoriesWithCounts();
   .bench-load { font-size: 2.25rem; }
   .hero-scroll { position: absolute; bottom: 25px; left: var(--gutter); display: flex; align-items: center; gap: 20px; text-transform: uppercase; letter-spacing: .12em; font-size: 9px; color: #bac7d8; }
   .hero-scroll :global(svg) { width: 15px; transform: rotate(90deg); }
-  .hero-ranges ul { justify-content: space-between; gap: 24px; padding-block: 22px; }
-  .hero-ranges a { font-size: .95rem; }
   .company-intro { background: #f6f5f1; border-bottom: 1px solid #e7e5df; }
   .intro-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 70px; align-items: center; }
   .dark-label { color: #a7431b; margin-bottom: 24px; }
@@ -439,8 +423,6 @@ const cats = allCategoriesWithCounts();
   .hero-video-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #07111be6 0%, #07111ba6 45%, #07111b26 100%), linear-gradient(0deg, #07111bc9, transparent 45%); z-index: -1; pointer-events: none; }
   .video-hero .hero-inner { grid-template-columns: 1fr; min-height: 700px; padding-block: 80px 100px; }
   .video-hero .hero-copy { max-width: 640px; }
-  .video-hero .hero-ranges { background: #07111b50; }
-  .video-hero .hero-ranges a span { color: #c1cbd8; }
   /* Keep the footage behind the mobile hero with a lighter, vertical shade. */
   @media (max-width: 960px) {
     .hero-video { height: 100%; object-fit: contain; object-position: center top; }
@@ -449,7 +431,6 @@ const cats = allCategoriesWithCounts();
     .video-hero .hero-copy { text-shadow: 0 2px 12px #0009; }
     .video-hero .lede { color: #e0e6ee; }
     .video-hero .hero-scroll { position: static; justify-self: start; }
-    .video-hero .hero-ranges { margin-top: 0; }
   }
   @media (max-width: 600px) {
     .video-hero .hero-inner { padding-block: 80px 32px; }

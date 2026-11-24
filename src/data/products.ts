@@ -37,6 +37,7 @@ export interface Product {
   finish: string;
   standards: string[];
   designFactor: string;
+  proofLoadTest?: string;
   tempRange: string;
   specColumns: SpecColumn[];
   specRows: SpecRow[];

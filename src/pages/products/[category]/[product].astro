@@ -46,6 +46,10 @@ const reference = allReferences[p.slug as keyof typeof allReferences] ?? fallbac
 const preferredRelated = relatedProducts(p, 4);
 const related = [...preferredRelated, ...products.filter((item) => item.grade === p.grade && item.slug !== p.slug && !preferredRelated.some((match) => match.slug === item.slug))].slice(0, 4);
 const firstDrawing = reference.sections[0]?.drawing;
+const workingLoadLimits = p.specRows.map((row) => row.wll).filter((value): value is number => typeof value === 'number');
+const wllRange = workingLoadLimits.length
+  ? `${Math.min(...workingLoadLimits).toFixed(1)}–${Math.max(...workingLoadLimits).toFixed(1)} t`
+  : undefined;
 ---
 <Base
   title={`${p.name} ${p.code}`}
@@ -74,6 +78,14 @@ const firstDrawing = reference.sections[0]?.drawing;
           <a class="spec-link" href="#specifications">View specifications ↓</a>
         </div>
       </div>
+      {p.proofLoadTest && (
+        <dl class="spec-summary" aria-label="Key specifications">
+          {wllRange && <><dt>WLL Range</dt><dd>{wllRange}</dd></>}
+          <dt>Proof Load Test</dt><dd>{p.proofLoadTest}</dd>
+          <dt>Safety Factor</dt><dd>{p.designFactor}</dd>
+          <dt>Temp Range</dt><dd>{p.tempRange}</dd>
+        </dl>
+      )}
       <section class="features" aria-labelledby="features-title">
         <h2 id="features-title">Features</h2>
         <ul>{reference.features.map((feature) => <li>{feature}</li>)}</ul>
@@ -105,6 +117,19 @@ const firstDrawing = reference.sections[0]?.drawing;
   </div>
 </Base>
 <style>
+  .spec-summary {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 6px clamp(16px, 4vw, 40px);
+    max-width: 480px;
+    margin: 0 0 24px;
+    padding: 20px;
+    border-radius: 6px;
+    background: #f3f2ef;
+    color: var(--navy);
+  }
+  .spec-summary dt { font-weight: 700; }
+  .spec-summary dd { margin: 0; }
   .product-layout { max-width: 1600px; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 36px; align-items: start; padding-block: 28px 40px; }
   .product-content { min-width: 0; }
   .product-sidebar { display: contents; }
