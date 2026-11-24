@@ -1,3 +1,8 @@
+img[src^="/images/products/branded/grade-100/turquoise/"],
+.page-hero__visual img[src="/images/page-heroes/products-branded-turquoise.webp"] {
+  filter: url("/images/products/branded/grade-100/coating.svg#grade-100-coating");
+}
+
 /* ---------- Kinston design tokens ---------- */
 :root {
   --orange: #f85000;
