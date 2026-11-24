@@ -15,4 +15,12 @@
     <feComposite in="coating" in2="coating-mask" operator="in" result="masked-coating"/>
     <feComposite in="masked-coating" in2="SourceGraphic" operator="over"/>
   </filter>
+  <filter id="grade-100-blue-link-coating" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <!-- Map green 110 to the same rgb(78, 105, 158) coating base, preserving shading and transparency. -->
+    <feColorMatrix type="matrix" values="
+      0 .8 0 0 -.03921569
+      0 .8 0 0 .06666667
+      0 .8 0 0 .27450980
+      0 0 0 1 0"/>
+  </filter>
 </svg>
