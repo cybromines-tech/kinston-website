@@ -7,7 +7,6 @@ import TechnicalParameters from '../../../components/TechnicalParameters.astro';
 import referenceData from '../../../data/product-technical-reference.json';
 import grade80ReferenceData from '../../../data/grade-80-technical-reference.json';
 import masterLinkReplacements from '../../../data/grade-80-master-links.json';
-import EnquiryForm from '../../../components/EnquiryForm.astro';
 import { categoryBySlug } from '../../../data/categories';
 import { products, relatedProducts, productUrl } from '../../../data/products';
 import { breadcrumbLd, productLd } from '../../../lib/seo';
@@ -71,7 +70,7 @@ const firstDrawing = reference.sections[0]?.drawing;
       <div class="overview">
         <p>{p.summary}</p>
         <div class="actions">
-          <a class="btn btn-sm" href="#enquire">Request a quote</a>
+          <a class="btn btn-sm" href="/contact">Request a quote</a>
           <a class="spec-link" href="#specifications">View specifications ↓</a>
         </div>
       </div>
@@ -90,9 +89,6 @@ const firstDrawing = reference.sections[0]?.drawing;
         ))}
       </section>
       {p.downloads.length > 0 && <section class="downloads"><h2>Downloads</h2><ul>{p.downloads.map((d) => <li><a href={d.href}>{d.label} · PDF</a></li>)}</ul></section>}
-      <section id="enquire" class="enquiry-section" aria-label="Product enquiry">
-        <EnquiryForm product={`${p.name} (${p.code})`} compact heading="Ask about this product" />
-      </section>
       <section class="related-section" aria-labelledby="related-title">
         <div class="related-heading"><h2 id="related-title">Related products</h2><a href="/products">View all products →</a></div>
         <div class="related-grid">
@@ -130,13 +126,12 @@ const firstDrawing = reference.sections[0]?.drawing;
   .features li { padding-block: 2px; }
   .technical-note { font-size: 12px; color: var(--steel); margin-top: 8px; }
   .usage-notice { font-size: 13px; padding: 10px 12px; background: var(--orange-soft); border-left: 3px solid var(--orange); margin-bottom: 14px; }
-  #specifications, #enquire { scroll-margin-top: 140px; }
+  #specifications { scroll-margin-top: 140px; }
   .model + .model { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--zinc); }
   .model h2 { font-size: 18px; }
   .model-drawing { margin: 0 0 16px; padding: 12px; border: 1px solid var(--zinc); border-radius: 5px; }
   .model-drawing img { width: 100%; max-height: 240px; object-fit: contain; }
   .downloads { padding-top: 24px; font-size: 13px; color: var(--navy); }
-  .enquiry-section { margin-top: 28px; }
   .related-section { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--zinc); }
   .related-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
   .related-heading h2 { margin: 0; }
