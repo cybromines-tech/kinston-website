@@ -13,6 +13,10 @@ export function getStaticPaths() {
 }
 const { category } = Astro.props;
 const items = productsByCategory(category.slug);
+const representativeProduct = items[0];
+const heroImage = representativeProduct?.grade === 'Grade 100' && representativeProduct.image
+  ? representativeProduct.image
+  : `/images/categories/branded/${category.slug}.webp`;
 const grades = [...new Set(items.map((p) => p.grade).filter(Boolean))] as string[];
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'Products', href: '/products' }, { name: category.name, href: `/products/${category.slug}` }];
 const anchor = (g: string) => g.toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -23,7 +27,7 @@ const anchor = (g: string) => g.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   path={`/products/${category.slug}`}
   jsonLd={[breadcrumbLd(crumbs)]}
 >
-  <PageHero eyebrow="ENGINEERED FOR THE LIFT" image={`/images/categories/branded/${category.slug}.webp`} product>
+  <PageHero eyebrow="ENGINEERED FOR THE LIFT" image={heroImage} product>
 <Breadcrumb items={crumbs} light />
       <h1>{category.name}</h1>
       <p class="lede">{category.description}</p>
