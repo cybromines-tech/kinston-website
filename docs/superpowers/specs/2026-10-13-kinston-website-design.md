@@ -7,9 +7,9 @@ Date: 2026-10-13
 - New corporate website for Kinston (lifting equipment: "Lifting · Trust · Performance").
 - Use the supplied logo exactly as provided.
 - SEO-friendly static stack.
-- Premium, corporate look. Reference competitors: yoke.net (category sidebar, product list, detail page
-  with dimensioned spec table, metric/imperial toggle) and williamhackett.com (category grid, grade filter tabs,
-  sectors, accreditations, knowledge base).
+- Premium, corporate look. Use yoke.net as a reference for the category sidebar, product list,
+  dimensioned specification table, and metric/imperial toggle. Include a category grid, grade filters,
+  sector pages, accreditations, and a knowledge base.
 - Product browsing: categories → product list per category → product detail page.
 - All other basic corporate pages. Dummy data where real data is missing.
 

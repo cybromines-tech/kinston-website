@@ -63,7 +63,6 @@ const wllRange = workingLoadLimits.length
     <article class="product-content">
       <Breadcrumb items={crumbs} />
       <header class="product-heading">
-        <p class="code">{p.code}{p.grade && <span>{p.grade}</span>}</p>
         <h1>{p.name}</h1>
       </header>
       {p.usageNotice && <p class="usage-notice">{p.usageNotice}</p>}
@@ -134,8 +133,6 @@ const wllRange = workingLoadLimits.length
   .product-content { min-width: 0; }
   .product-sidebar { display: contents; }
   .product-heading { margin: 18px 0; }
-  .code { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--steel); margin-bottom: 5px; }
-  .code span { color: var(--navy); background: #eef2f8; border-radius: 3px; padding: 2px 6px; }
   h1 { font-size: clamp(1.6rem, 2.3vw, 2rem); line-height: 1.2; }
   h2 { font-size: 21px; margin-bottom: 12px; }
   .visuals { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }

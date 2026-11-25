@@ -583,14 +583,14 @@ const entries: Product[] = [
     ]
   },
   {
-    "slug": "hack10-master-link",
+    "slug": "master-link-g100",
     "category": "master-links",
     "group": "Master links",
     "name": "Master Link",
     "code": "10-H01",
-    "art": "hack10-master-link",
-    "image": "/images/products/reference/grade-100/hack10-master-link.webp",
-    "drawing": "/images/products/technical/hack10-master-link.webp",
+    "art": "master-link-g100",
+    "image": "/images/products/reference/grade-100/master-link-g100.webp",
+    "drawing": "/images/products/technical/master-link-g100.webp",
     "summary": "Alloy steel master link for connecting one- or two-leg Grade 100 chain slings to lifting equipment. It also forms the top link of the matching sub assembly.",
     "description": [
       "Alloy steel master link for connecting one- or two-leg Grade 100 chain slings to lifting equipment. It also forms the top link of the matching sub assembly.",
@@ -637,14 +637,14 @@ const entries: Product[] = [
     ],
   },
   {
-    "slug": "hack10-sub-assembly",
+    "slug": "sub-assembly-g100",
     "category": "master-links",
     "group": "Master links",
     "name": "Master Link Sub Assembly",
     "code": "10-H02",
-    "art": "hack10-sub-assembly",
-    "image": "/images/products/reference/grade-100/hack10-sub-assembly.webp",
-    "drawing": "/images/products/technical/hack10-sub-assembly.webp",
+    "art": "sub-assembly-g100",
+    "image": "/images/products/reference/grade-100/sub-assembly-g100.webp",
+    "drawing": "/images/products/technical/sub-assembly-g100.webp",
     "summary": "Alloy steel assembly with a master link and two welded sub links for connecting three- or four-leg Grade 100 chain slings to lifting equipment.",
     "description": [
       "Alloy steel assembly with a master link and two welded sub links for connecting three- or four-leg Grade 100 chain slings to lifting equipment.",

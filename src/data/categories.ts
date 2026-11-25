@@ -13,7 +13,7 @@ export const categories: Category[] = [
     slug: 'grade-80-rigging',
     name: 'Grade 80 Rigging',
     short: 'Grade 80 Rigging',
-    description: 'Grade 80 alloy steel hooks, connecting links, D rings, swivels, master links and rigging accessories in RAL 2004 orange. Browse models, dimensions and working load limits.',
+    description: 'Grade 80 rigging hooks, master links, swivels and connectors. Browse part codes, dimensions and working load limits.',
     art: 'sling-hook',
     groups: ['G80 Clevis Hook', 'G80 Connecting Link', 'G80 D Ring & Weld On Hook', 'G80 Eye Hook', 'G80 Forged Swivel', 'G80 Master Link', 'G80 Other Rigging Accessories', 'G80 Safety Hook', 'G80 Swivel Hook'],
   },

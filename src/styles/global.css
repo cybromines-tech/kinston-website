@@ -3,8 +3,8 @@ img[src^="/images/products/branded/grade-100/turquoise/"],
   filter: url("/images/products/branded/grade-100/coating.svg#grade-100-coating");
 }
 
-img[src="/images/products/reference/grade-100/hack10-master-link.webp"],
-img[src="/images/products/reference/grade-100/hack10-sub-assembly.webp"] {
+img[src="/images/products/reference/grade-100/master-link-g100.webp"],
+img[src="/images/products/reference/grade-100/sub-assembly-g100.webp"] {
   filter: url("/images/products/branded/grade-100/coating.svg#grade-100-blue-link-coating");
 }
 
