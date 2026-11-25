@@ -14,17 +14,6 @@
       "sizes": 9
     },
     {
-      "slug": "alloy-steel-clevis-sling-hook-2-18-g80",
-      "name": "SLR014 Alloy Steel Clevis Sling Hook",
-      "source": "https://www.shenli-rigging.com/2-18-alloy-steel-clevis-sling-hook.html",
-      "referenceImage": "https://www.shenli-rigging.com/products/2-18-alloy-steel-clevis-sling-hook_01.jpg",
-      "referencePath": "/images/products/reference/grade-80/alloy-steel-clevis-sling-hook-2-18-g80.jpg",
-      "localImage": "/images/products/branded/grade-80/alloy-steel-clevis-sling-hook-2-18-g80.webp",
-      "group": "G80 Clevis Hook",
-      "tables": 1,
-      "sizes": 6
-    },
-    {
       "slug": "deep-throat-clevis-grab-hook-2-32-g80",
       "name": "Deep Throat Alloy Steel Clevis Grab Hook",
       "source": "https://www.shenli-rigging.com/2-32-deep-throat-clevis-grab-hook.html",
@@ -144,17 +133,6 @@
       "group": "G80 Connecting Link",
       "tables": 1,
       "sizes": 7
-    },
-    {
-      "slug": "alloy-steel-sling-connector-2-10-g80",
-      "name": "Alloy Steel Sling Connector",
-      "source": "https://www.shenli-rigging.com/2-10-alloy-steel-sling-connector.html",
-      "referenceImage": "https://www.shenli-rigging.com/products/2-10-alloy-steel-sling-connector_01.jpg",
-      "referencePath": "/images/products/reference/grade-80/alloy-steel-sling-connector-2-10-g80.jpg",
-      "localImage": "/images/products/branded/grade-80/alloy-steel-sling-connector-2-10-g80.webp",
-      "group": "G80 Connecting Link",
-      "tables": 3,
-      "sizes": 9
     },
     {
       "slug": "alloy-steel-connecting-link-2-29-g80",

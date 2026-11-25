@@ -70,6 +70,11 @@ def prepare():
 def import_catalogue():
     products, references, manifest, assets = [], {}, [], []
     for number, (url, name) in enumerate(entries(), 1):
+        if url in {
+            '2-18-alloy-steel-clevis-sling-hook.html',
+            '2-10-alloy-steel-sling-connector.html',
+        }:
+            continue
         page = parse(CACHE/'pages'/url)
         contents = page.all('content')
         if not contents:
