@@ -7,17 +7,27 @@ import { site } from '../data/site';
 import { allCategoriesWithCounts } from '../data/products';
 
 const cats = allCategoriesWithCounts();
+const heroImages = [
+  'rigging-range',
+  'forged-hooks',
+  'chain-assembly',
+  'shackles',
+  'quality-inspection',
+  'proof-test',
+];
 ---
 <Base
   title="Kinston Lifting | Certified lifting chain, hooks, shackles and hoists"
   description={site.description}
   path="/"
 >
-  <section class="hero video-hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/videos/kinston-hero-poster.jpg" aria-hidden="true" tabindex="-1">
-      <source src="/videos/kinston-hero.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-video-shade" aria-hidden="true"></div>
+  <section class="hero image-hero">
+    <div class="hero-images" aria-hidden="true">
+      {heroImages.map((name, index) => (
+        <img class:list={['hero-image', { 'is-current': index === 0 }]} src={`/images/home-hero/${name}.webp`} alt="" decoding="async" fetchpriority={index === 0 ? 'high' : 'low'} />
+      ))}
+    </div>
+    <div class="hero-image-shade" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <div class="hero-copy">
         <p class="eyebrow"><span></span> Kinston</p>
@@ -80,7 +90,8 @@ const cats = allCategoriesWithCounts();
 </Base>
 
 <script>
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const reduce = motionPreference.matches;
   document.documentElement.classList.add('js');
 
   // Scroll reveal: children of [data-reveal] rise in with a stagger.
@@ -95,11 +106,24 @@ const cats = allCategoriesWithCounts();
     revealEls.forEach((el) => io.observe(el));
   }
 
-  const video = document.querySelector<HTMLVideoElement>('.hero-video');
-  if (video) {
-    video.muted = true;
-    if (reduce) video.pause();
-    else video.play().catch(() => {});
+  const slides = Array.from(document.querySelectorAll<HTMLImageElement>('.hero-image'));
+  if (slides.length > 1) {
+    let current = 0;
+    let rotation: number | undefined;
+    const startOrStop = () => {
+      window.clearInterval(rotation);
+      if (motionPreference.matches || document.hidden) return;
+      rotation = window.setInterval(() => {
+        const next = (current + 1) % slides.length;
+        if (!slides[next].complete || slides[next].naturalWidth === 0) return;
+        slides[current].classList.remove('is-current');
+        slides[next].classList.add('is-current');
+        current = next;
+      }, 5500);
+    };
+    document.addEventListener('visibilitychange', startOrStop);
+    motionPreference.addEventListener('change', startOrStop);
+    startOrStop();
   }
 
   // Count-up for the stats strip.
@@ -416,27 +440,29 @@ const cats = allCategoriesWithCounts();
   .range-go { border: none; background: #f0f2f5; }
   @media (hover: none) { .range-browse { display: none; } }
 
-  /* Full-width video hero; keep the copy readable over moving footage. */
-  .video-hero { background: #101b28; isolation: isolate; }
-  .video-hero::before { display: none; }
-  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; z-index: -2; }
-  .hero-video-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #07111be6 0%, #07111ba6 45%, #07111b26 100%), linear-gradient(0deg, #07111bc9, transparent 45%); z-index: -1; pointer-events: none; }
-  .video-hero .hero-inner { grid-template-columns: 1fr; min-height: 700px; padding-block: 80px 100px; }
-  .video-hero .hero-copy { max-width: 640px; }
-  /* Keep the footage behind the mobile hero with a lighter, vertical shade. */
-  @media (max-width: 960px) {
-    .hero-video { height: 100%; object-fit: contain; object-position: center top; }
-    .hero-video-shade { background: linear-gradient(180deg, #101b2810 0%, #101b2826 35vw, #101b28 56.25vw); }
-    .video-hero .hero-inner { min-height: 720px; min-height: 85svh; padding-block: 64px 36px; gap: 36px; align-content: end; }
-    .video-hero .hero-copy { text-shadow: 0 2px 12px #0009; }
-    .video-hero .lede { color: #e0e6ee; }
-    .video-hero .hero-scroll { position: static; justify-self: start; }
+  .image-hero { background: #101b28; isolation: isolate; }
+  .image-hero::before { display: none; }
+  .hero-images, .hero-image, .hero-image-shade { position: absolute; inset: 0; }
+  .hero-images { z-index: -2; overflow: hidden; }
+  .hero-image { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 66% center; opacity: 0; transform: scale(1); transition: opacity .95s ease, transform 6.5s ease-out; }
+  .hero-image.is-current { opacity: 1; transform: scale(1.045); }
+  .hero-image-shade { background: linear-gradient(90deg, #07111bee 0%, #07111b95 40%, #07111b05 78%), linear-gradient(0deg, #07111bd9, transparent 30%); z-index: -1; pointer-events: none; }
+  .image-hero .hero-inner { grid-template-columns: 1fr; min-height: clamp(460px, 62svh, 600px); padding-block: 44px 68px; }
+  .image-hero .hero-copy { max-width: 640px; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-image, .hero-image.is-current { transform: none; transition: none; }
   }
-  @media (max-width: 600px) {
-    .video-hero .hero-inner { padding-block: 80px 32px; }
-    .video-hero h1 { font-size: clamp(2.4rem, 10vw, 3.5rem); margin-block: 16px; }
-    .video-hero .hero-actions { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
-    .video-hero .hero-actions .btn { width: 100%; justify-content: center; }
+  @media (max-width: 720px) {
+    .image-hero { --hero-image-height: clamp(180px, 53vw, 300px); }
+    .hero-images, .hero-image-shade { bottom: auto; height: var(--hero-image-height); }
+    .hero-image { object-position: 72% center; }
+    .hero-image-shade { background: linear-gradient(180deg, transparent 55%, #101b28 100%); }
+    .image-hero .hero-inner { min-height: 0; padding-block: calc(var(--hero-image-height) - 12px) 20px; gap: 18px; }
+    .image-hero .hero-scroll { position: static; justify-self: start; }
+    .image-hero h1 { font-size: clamp(2rem, 9vw, 3.5rem); margin-block: 10px; }
+    .image-hero .hero-intro { font-size: 1.05rem; margin-bottom: 0; }
+    .image-hero .hero-actions { display: grid; grid-template-columns: 1fr; margin-top: 16px; }
+    .image-hero .hero-actions .btn { width: 100%; justify-content: center; }
   }
 
 </style>
